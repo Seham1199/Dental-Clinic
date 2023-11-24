@@ -88,9 +88,6 @@ margin: 0 0 20px;
     color: var(--secondary-color);
     line-height: 28px;
 }
-
-
-
 /* =============================== HEADER =============================== */
 .header{
     background: rgba(255,255,255,0.9);
@@ -217,6 +214,7 @@ margin: 0 0 20px;
 .landing{
     background-image: url(../images/landing.jpg);
     background-size:cover;
+    background-position: center center;
     height: 100vh;
     position: relative;
     margin-top: 70px;
@@ -239,19 +237,31 @@ margin: 0 0 20px;
     color: var(--fundamental-color);
     display: block;
     width: fit-content;
-    font-size: 30px;
+    font-size: 40px;
     margin: 0 0 20px;
     position: relative;
 }
 .landing .layer .landing-caption h1::before{
-  content: "";
+  content: attr(data-text);
   position: absolute;
-  height: 30px;
-  width: 2px;
-  left: 260px;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: var(--main-color);
+  height: 100%;
+  width: 0;
+  left: 0;
+  top: 0;
+  color: var(--main-color);
+  overflow: hidden;
+  border-right: 3px solid var(--main-color);
+  animation: animate 6s linear infinite;
+}
+@keyframes animate {
+    0%, 10% , 100%
+    {
+        width: 0%;
+    }
+    70% , 90%
+    {
+        width: 100%;
+    }
 }
 .landing .layer .landing-caption p{
     color: var(--fundamental-color);
@@ -277,16 +287,27 @@ margin: 0 0 20px;
     color: var(--main-color);
     border-color: var(--main-color);
 }
+@media (max-width:991px) {
+.landing{
+    height: 500px;
+}
+}
 @media (max-width:767px) {
 .landing .container{
     width: 100%;
+}  
 }
+@media (max-width:639px) {
 .landing .container .landing-caption{
     width: 100%;
 }
 .landing{
     height: 50vh;
-    background-position: center center;
+}
+}
+@media (max-width:479px) {
+.landing .layer .landing-caption h1{
+    font-size: 25px;
 }
 }
 /* ========================================= ABOUT =============================== */
@@ -392,7 +413,6 @@ margin: 0 0 20px;
 }
 .services .service{
     display: grid;
-    /* grid-template-columns: repeat(auto-fill , minMax(300px , 1fr)); */
     grid-template-columns: repeat(3 , 1fr);
     column-gap: 30px;
     row-gap: 40px;
@@ -457,7 +477,6 @@ margin: 0 0 20px;
 }
 .doctors .doctor {
     display: grid;
-    /* grid-template-columns: repeat(auto-fill , minMax(250px , 1fr)); */
     grid-template-columns: repeat(4 , 1fr );
     gap: 30px;
     max-width: 100%;
@@ -493,9 +512,6 @@ margin: 0 0 20px;
 .doctors .doctor .doctor-card .doctor-image img{
     border-radius: 50%;
     width: 100%;
-    /* width: 188px; 
-    height:188px; */
-    /* width: 145.5px; */
     padding-bottom: 0 !important;
    background-color: #333;
    display: block;
@@ -717,7 +733,7 @@ margin: 0 5px 10px;
 .portfolio .portfolio-cards .portfolio-card:hover .overlay {
     display: block;
 }
-.portfolio .portfolio-cards  .overlay:hover i{
+.portfolio .portfolio-cards .overlay i:hover{
     background-color: var(--fundamental-color);
     color: var(--main-color);
 }
@@ -882,6 +898,7 @@ margin: 0 5px 10px;
 }
 .contacts .contact .contact-form{
     width: 50%;
+    margin: auto;
 }
 @media (max-width:991px) {
 .contacts .contact .contact-form{
